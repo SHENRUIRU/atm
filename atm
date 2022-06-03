@@ -1,0 +1,94 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Account
+{
+	char name[100];
+	char idCard[19];
+	char tel[12];
+	char username[100];
+	char password[7];
+	float money;
+
+	struct Account *next;
+};
+typedef struct Account Account;
+
+Account * head=NULL;
+Account * tail=NULL;
+
+
+void signUp()
+{
+
+	Account * newNodeP=(Account *)malloc(sizeof(Account));
+	
+	printf("请输入姓名:\n");
+	scanf("%s",newNodeP->name);
+
+	printf("请输入身份证:\n");
+	scanf("%s",newNodeP->idCard);
+
+	printf("请输入电话:\n");
+	scanf("%s",newNodeP->tel);
+
+	printf("请输入账号:\n");
+	scanf("%s",newNodeP->username);
+
+	printf("请输入密码:\n");
+	scanf("%s",newNodeP->password);
+
+	newNodeP->money=0.0f;
+	newNodeP->next=NULL;
+
+	if(head==NULL)
+	{
+		head=newNodeP;
+		tail=newNodeP;
+	}
+	else
+	{
+		tail->next=newNodeP;
+		tail=newNodeP;
+	}
+
+	printf("创建成功!\n");
+
+}
+
+void signIn()
+{
+
+}
+
+void showMenu()
+{
+	printf("开户，按1\n");
+	printf("登录，按2\n");
+	int n;
+	scanf("%d",&n);
+
+	if(n==1)
+	{
+		signUp();
+	}
+	else if(n==2)
+	{
+		signIn();
+	}
+}
+
+int main()
+{
+	printf("欢迎使用XXX银行\n");
+	printf("Welcome to XXX bank\n");
+
+	int language;
+	printf("中文，按1\n");
+	printf("English, Press 2\n");
+	scanf("%d",&language);
+
+	showMenu();
+
+	return 0;
+}
